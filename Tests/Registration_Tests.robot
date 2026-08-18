@@ -2,6 +2,7 @@
 Resource    ../Resources/Common/BrowserKeyword.resource
 Resource    ../Resources/Pages/Register.resource
 Resource    ../TestData/Registration_Data.robot
+resource    ../Resources/Pages/HomePage.resource
 
 Test Setup       Initialize Browser
 Test Teardown    Close Application Browser
@@ -9,26 +10,44 @@ Test Teardown    Close Application Browser
 
 *** Test Cases ***
 
+TC_001_Verify User Registration
+    [Documentation]    This test case verifies the user registration functionality by navigating to the Register page, filling in the registration form with valid data, submitting the form, and verifying the success message.
+    [tags]    Regression    Smoke
 
-Set Register User Data
-    [Documentation]    This test case sets the user data for registration using the provided test data.
+    Verify HomePage Loaded
+    Navigate To Register Page
     Set Register User Data    
-    ...    ${firstName}    
-    ...    ${lastName}    
-    ...    ${address}    
-    ...    ${city}    
-    ...    ${state}    
-    ...    ${zipCode}    
-    ...    ${phone}    
-    ...    ${ssn}    
-    ...    ${username}    
-    ...    ${password}
-
-
-Submit Registration Request
-    [Documentation]    This test case submits the registration request and verifies the success message.
-
-
-verify Registration Success
-    [Documentation]    This test case verifies that the registration was successful by checking for a success message.
+    ...    ${FIRST_NAME}    
+    ...    ${LAST_NAME}    
+    ...    ${ADDRESS}    
+    ...    ${CITY}    
+    ...    ${STATE}    
+    ...    ${ZIPCODE}    
+    ...    ${PHONE}    
+    ...    ${SSN}    
+    ...    ${USERNAME}    
+    ...    ${PASSWORD}
+    Submit Registration Request
     Verify Registration Success    ${ExpectedSuccessMessageText}
+
+
+
+TC_002_Verify Duplicate User Registration Is Rejected
+    [Documentation]    This test case verifies that the application correctly handles duplicate user registration attempts by trying to register with an existing username and checking for the appropriate error message.
+    [tags]    Regression
+
+    Verify HomePage Loaded
+    Navigate To Register Page
+    Set Register User Data    
+    ...    ${FIRST_NAME}    
+    ...    ${LAST_NAME}    
+    ...    ${ADDRESS}    
+    ...    ${CITY}    
+    ...    ${STATE}    
+    ...    ${ZIPCODE}    
+    ...    ${PHONE}    
+    ...    ${SSN}    
+    ...    ${USERNAME}    
+    ...    ${PASSWORD}
+    Submit Registration Request
+    Verify Dublicate User Is Rejected    ${ExpectedErrorMessageText}

@@ -8,9 +8,11 @@ Resource    ../../Config/Global_Variables.robot
 Initialize Browser
     [Arguments]    ${url}=${URL}    ${browser}=${BROWSER}
 
-    Open Browser    ${url}    ${browser}    options=${options}
+    Open Browser    ${url}    ${browser}    
     Maximize Browser Window
     Sleep    ${StandardWait}
+
+
 
 Close Application Browser
     [Documentation]    Closes the browser and ends the session

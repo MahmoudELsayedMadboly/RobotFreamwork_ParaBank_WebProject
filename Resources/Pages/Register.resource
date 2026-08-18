@@ -20,7 +20,7 @@ ${NEW_PASSWORD_FIELD}         id=customer.password
 ${CONFIRM_PASSWORD_FIELD}     id=repeatedPassword
 ${REGISTER_BUTTON}            xpath=//input[@value='Register']
 ${REGISTER_SUCCESS_MESSAGE}    xpath=//p[text()='Your account was created successfully. You are now logged in.']
-
+${REGISTER_Error_MESSAGE}     id=customer.username.errors
 
 
 *** Keywords ***
@@ -54,7 +54,6 @@ Set Register User Data
 Submit Registration Request
     [Documentation]    Clicks the Register button to submit the registration form
     Click Button    ${REGISTER_BUTTON}
-    Verify Element Is Visible    ${REGISTER_SUCCESS_MESSAGE}
 
 
 
@@ -62,4 +61,14 @@ Verify Registration Success
     [Arguments]    ${ExpectedSuccessMessageText}
     [Documentation]    Verifies that the registration was successful by checking for a success message
 
+    Verify Element Is Visible    ${REGISTER_SUCCESS_MESSAGE}
     Compare Element Text    ${REGISTER_SUCCESS_MESSAGE}    ${ExpectedSuccessMessageText}
+
+
+
+Verify Dublicate User Is Rejected
+    [Arguments]    ${ExpectedErrorMessageText}
+    [Documentation]    Verifies that the application correctly handles duplicate user registration attempts by checking for an error message
+
+    Verify Element Is Visible    ${REGISTER_Error_MESSAGE}
+    Compare Element Text    ${REGISTER_Error_MESSAGE}    ${ExpectedErrorMessageText}
