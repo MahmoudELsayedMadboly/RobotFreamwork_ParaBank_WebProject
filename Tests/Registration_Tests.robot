@@ -25,8 +25,7 @@ TC_001_Verify User Registration
     ...    ${ZIPCODE}    
     ...    ${PHONE}    
     ...    ${SSN}    
-    ...    ${USERNAME}    
-    ...    ${PASSWORD}
+
     Submit Registration Request
     Verify Registration Success    ${ExpectedSuccessMessageText}
 
@@ -47,7 +46,6 @@ TC_002_Verify Duplicate User Registration Is Rejected
     ...    ${ZIPCODE}    
     ...    ${PHONE}    
     ...    ${SSN}    
-    ...    ${USERNAME}    
-    ...    ${PASSWORD}
+
     Submit Registration Request
     Verify Dublicate User Is Rejected    ${ExpectedErrorMessageText}

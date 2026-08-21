@@ -1,0 +1,16 @@
+# Robot Framework execution outputs
+log.html
+report.html
+output.xml
+Results/
+*.png
+selenium-screenshot*.png
+
+# Extensions (large binary, not source code)
+Extensions/
+
+# OS/editor junk
+.DS_Store
+.vscode/
+*.pyc
+__pycache__/

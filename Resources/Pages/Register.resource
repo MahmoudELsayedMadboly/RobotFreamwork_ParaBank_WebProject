@@ -34,26 +34,28 @@ Set Register User Data
     ...    ${zipCode}    
     ...    ${phoneNumber}    
     ...    ${ssn}    
-    ...    ${username}    
-    ...    ${password}
 
 
-    Input Text    ${FIRST_NAME_FIELD}          ${firstName}
-    Input Text    ${LAST_NAME_FIELD}           ${lastName}
-    Input Text    ${ADDRESS_FIELD}             ${address}
-    Input Text    ${CITY_FIELD}                ${city}
-    Input Text    ${STATE_FIELD}               ${state}
-    Input Text    ${ZIPCODE_FIELD}             ${zipCode}
-    Input Text    ${PHONE_FIELD}               ${phoneNumber}
-    Input Text    ${SSN_FIELD}                 ${ssn}
-    Input Text    ${NEW_USERNAME_FIELD}        ${username}
-    Input Text    ${NEW_PASSWORD_FIELD}        ${password}
-    Input Text    ${CONFIRM_PASSWORD_FIELD}     ${password}
+    ${username} =   Generate Unique Username
+    ${password} =   Generate Random Password
+
+
+    Safe Input Text    ${FIRST_NAME_FIELD}          ${firstName}
+    Safe Input Text    ${LAST_NAME_FIELD}           ${lastName}
+    Safe Input Text    ${ADDRESS_FIELD}             ${address}
+    Safe Input Text    ${CITY_FIELD}                ${city}
+    Safe Input Text    ${STATE_FIELD}               ${state}
+    Safe Input Text    ${ZIPCODE_FIELD}             ${zipCode}
+    Safe Input Text    ${PHONE_FIELD}               ${phoneNumber}
+    Safe Input Text    ${SSN_FIELD}                 ${ssn}
+    Safe Input Text    ${NEW_USERNAME_FIELD}        ${username}
+    Safe Input Text    ${NEW_PASSWORD_FIELD}        ${password}
+    Safe Input Text    ${CONFIRM_PASSWORD_FIELD}     ${password}
 
 
 Submit Registration Request
     [Documentation]    Clicks the Register button to submit the registration form
-    Click Button    ${REGISTER_BUTTON}
+    Safe Click    ${REGISTER_BUTTON}
 
 
 

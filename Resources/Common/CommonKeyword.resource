@@ -21,7 +21,23 @@ Safe Click
         Click Element    ${locator}
     EXCEPT    AS    ${error}
         Capture And Name Screenshot
-        Fail    Unable to click element '${locator}': ${error}
+        Fail    The issue is:Unable to click element '${locator}': ${error}
+    END
+
+
+
+
+
+Safe Input Text
+    [Arguments]    ${locator}    ${text}
+    TRY
+        Wait Until Element Is Visible    ${locator}    ${StandardWait}
+        Wait Until Element Is Enabled    ${locator}    ${StandardWait}
+        Clear Element Text    ${locator}
+        Input Text    ${locator}    ${text}
+    EXCEPT    AS    ${error}
+        Capture And Name Screenshot
+        Fail    The issue is: Unable to input text into '${locator}': ${error}
     END
 
 
@@ -33,7 +49,7 @@ Verify Element Is Visible
         Wait Until Element Is Visible    ${locator}    ${StandardWait}
     EXCEPT    AS    ${error}
         Capture And Name Screenshot
-        Fail    Element '${locator}' was not visible within ${StandardWait}: ${error}
+        Fail    The issue is: Element '${locator}' was not visible within ${StandardWait}: ${error}
     END
 
 
@@ -47,7 +63,7 @@ Navigate To Page
         Wait Until Page Contains Element    ${destinationPageLocator}    ${StandardWait}
     EXCEPT    AS    ${error}
         Capture And Name Screenshot
-        Fail    Navigation failed — '${destinationPageLocator}' did not appear: ${error}
+        Fail    The issue is: Navigation failed — '${destinationPageLocator}' did not appear: ${error}
     END
 
 
@@ -76,47 +92,24 @@ Compare Element Text
         Should Be Equal    ${actualText}    ${expectedText}
     EXCEPT    AS    ${error}
         Capture And Name Screenshot
-        Fail    Text mismatch at '${locator}' — expected '${expectedText}' but got '${actualText}'
+        Fail    The issue is:Text mismatch at '${locator}' — expected '${expectedText}' but got '${actualText}'
     END
 
 
 
 
+Generate Unique Username
+    [Documentation]    Generates a unique username to avoid duplicate-registration collisions
+    ${randomSuffix}=    Generate Random String    6    [LOWER][NUMBERS]
+    ${username}=    Catenate    SEPARATOR=    madboly_    ${randomSuffix}
+    RETURN    ${username}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Verify Element Is Visible
-    [Arguments]    ${locator}
-    Wait Until Element Is Visible    ${locator}    ${StandardWait}
-
-Navigate To Page
-    [Arguments]    ${navigationLocator}    ${destinationPageLocator}
-    Click Element    ${navigationLocator}
-    Wait Until Page Contains Element    ${destinationPageLocator}    ${StandardWait}
-
-Get Element Text
-    [Arguments]    ${locator}
-    ${text}=    Get Text    ${locator}
-    RETURN    ${text}
-
-
-Compare Element Text
-    [Arguments]    ${locator}    ${expectedText}
-    Wait Until Element Is Visible    ${locator}    ${StandardWait}
-    ${actualText}=    Get Element Text    ${locator}
-    Should Be Equal    ${actualText}    ${expectedText}
+Generate Random Password
+    [Documentation]    Generates a random password meeting typical complexity rules (upper, lower, digit)
+    ${upper}=      Generate Random String    2    [UPPER]
+    ${lower}=      Generate Random String    4    [LOWER]
+    ${digits}=     Generate Random String    2    [NUMBERS]
+    ${password}=   Catenate    SEPARATOR=    ${upper}    ${lower}    ${digits}    @
+    RETURN    ${password}
