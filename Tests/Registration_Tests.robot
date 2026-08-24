@@ -12,11 +12,11 @@ Test Teardown    Close Application Browser
 
 TC_001_Verify User Registration
     [Documentation]    This test case verifies the user registration functionality by navigating to the Register page, filling in the registration form with valid data, submitting the form, and verifying the success message.
-    [tags]    Regression    Smoke
+    [tags]    Regression
 
     Verify HomePage Loaded
     Navigate To Register Page
-    Set Register User Data    
+    ${username}    ${password}=    Set Register User Data  
     ...    ${FIRST_NAME}    
     ...    ${LAST_NAME}    
     ...    ${ADDRESS}    
@@ -24,10 +24,19 @@ TC_001_Verify User Registration
     ...    ${STATE}    
     ...    ${ZIPCODE}    
     ...    ${PHONE}    
-    ...    ${SSN}    
+    ...    ${SSN}      
 
     Submit Registration Request
-    Verify Registration Success    ${ExpectedSuccessMessageText}
+    Verify Registration Success    
+    ...    ${ExpectedSuccessMessageText}
+
+    Set Suite Variable    
+    ...    ${REGISTERED_USERNAME}    
+    ...    ${username}
+
+    Set Suite Variable    
+    ...    ${REGISTERED_PASSWORD}    
+    ...    ${password}
 
 
 
@@ -37,15 +46,18 @@ TC_002_Verify Duplicate User Registration Is Rejected
 
     Verify HomePage Loaded
     Navigate To Register Page
-    Set Register User Data    
-    ...    ${FIRST_NAME}    
-    ...    ${LAST_NAME}    
-    ...    ${ADDRESS}    
-    ...    ${CITY}    
+    Set Register User Data With Existing User Credentials
+    ...    ${FIRST_NAME}
+    ...    ${LAST_NAME}
+    ...    ${ADDRESS}
+    ...    ${CITY}
     ...    ${STATE}    
     ...    ${ZIPCODE}    
     ...    ${PHONE}    
     ...    ${SSN}    
+    ...    ${REGISTERED_USERNAME}
+    ...    ${REGISTERED_PASSWORD}
 
     Submit Registration Request
-    Verify Dublicate User Is Rejected    ${ExpectedErrorMessageText}
+    Verify Dublicate User Is Rejected    
+    ...    ${ExpectedErrorMessageText}

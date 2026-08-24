@@ -39,6 +39,36 @@ Set Register User Data
     ${username} =   Generate Unique Username
     ${password} =   Generate Random Password
 
+    Safe Input Text    ${FIRST_NAME_FIELD}          ${firstName}
+    Safe Input Text    ${LAST_NAME_FIELD}           ${lastName}
+    Safe Input Text    ${ADDRESS_FIELD}             ${address}
+    Safe Input Text    ${CITY_FIELD}                ${city}
+    Safe Input Text    ${STATE_FIELD}               ${state}
+    Safe Input Text    ${ZIPCODE_FIELD}             ${zipCode}
+    Safe Input Text    ${PHONE_FIELD}               ${phoneNumber}
+    Safe Input Text    ${SSN_FIELD}                 ${ssn}
+    Safe Input Text    ${NEW_USERNAME_FIELD}        ${username}
+    Safe Input Text    ${NEW_PASSWORD_FIELD}        ${password}
+    Safe Input Text    ${CONFIRM_PASSWORD_FIELD}     ${password}
+
+    RETURN    ${username}    ${password}
+
+
+
+
+Set Register User Data With Existing User Credentials
+
+    [Arguments]
+    ...    ${firstName}
+    ...    ${lastName}
+    ...    ${address}
+    ...    ${city}
+    ...    ${state}
+    ...    ${zipCode}
+    ...    ${phoneNumber}
+    ...    ${ssn}
+    ...    ${username}
+    ...    ${password}
 
     Safe Input Text    ${FIRST_NAME_FIELD}          ${firstName}
     Safe Input Text    ${LAST_NAME_FIELD}           ${lastName}
@@ -53,9 +83,11 @@ Set Register User Data
     Safe Input Text    ${CONFIRM_PASSWORD_FIELD}     ${password}
 
 
+
 Submit Registration Request
     [Documentation]    Clicks the Register button to submit the registration form
-    Safe Click    ${REGISTER_BUTTON}
+    Safe Click    
+    ...    ${REGISTER_BUTTON}
 
 
 
@@ -63,8 +95,12 @@ Verify Registration Success
     [Arguments]    ${ExpectedSuccessMessageText}
     [Documentation]    Verifies that the registration was successful by checking for a success message
 
-    Verify Element Is Visible    ${REGISTER_SUCCESS_MESSAGE}
-    Compare Element Text    ${REGISTER_SUCCESS_MESSAGE}    ${ExpectedSuccessMessageText}
+    Verify Element Is Visible    
+    ...    ${REGISTER_SUCCESS_MESSAGE}
+
+    Compare Element Text    
+    ...    ${REGISTER_SUCCESS_MESSAGE}    
+    ...    ${ExpectedSuccessMessageText}
 
 
 
@@ -72,5 +108,9 @@ Verify Dublicate User Is Rejected
     [Arguments]    ${ExpectedErrorMessageText}
     [Documentation]    Verifies that the application correctly handles duplicate user registration attempts by checking for an error message
 
-    Verify Element Is Visible    ${REGISTER_Error_MESSAGE}
-    Compare Element Text    ${REGISTER_Error_MESSAGE}    ${ExpectedErrorMessageText}
+    Verify Element Is Visible    
+    ...    ${REGISTER_Error_MESSAGE}
+    
+    Compare Element Text    
+    ...    ${REGISTER_Error_MESSAGE}    
+    ...    ${ExpectedErrorMessageText}

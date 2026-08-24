@@ -1,10 +1,10 @@
 Core flows worth automating:
 ----------------------------
-1- User Registration
+1- User Registration    "Done"
     Register a new customer with all required fields (name, address, SSN, username, password)
     Verify successful registration and auto-login/redirect to account overview
 
-2- Login
+2- Login    "Done"
     Valid credentials → successful login
     Invalid credentials → appropriate error message
     Empty username/password → validation message
@@ -13,7 +13,7 @@ Core flows worth automating:
     Verify accounts list displays after login
     Verify account balance shown correctly
 
-4- Open New Account
+4- Open New Account    "in progress"
     Open a new Checking or Savings account
     Verify new account ID appears in Account Overview
 
