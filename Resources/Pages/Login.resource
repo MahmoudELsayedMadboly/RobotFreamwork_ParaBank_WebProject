@@ -9,7 +9,6 @@ Resource    ../Common/CommonKeyword.resource
 ${Login_Username}    name=username    
 ${Login_Password}    name=password    
 ${Login_Button}    xpath=//input[@value='Log In']
-${ACCOUNTS_OVERVIEW_HEADER}    css=#showOverview h1.title
 ${LOGIN_ERROR_HEADER}     css=#rightPanel h1.title
 ${LOGIN_ERROR_MESSAGE_InvalidCredentials}    xpath=//p[text()='An internal error has occurred and has been logged.']            
 ${LOGIN_ERROR_MESSAGE_NullCredentials}    xpath=//p[text()='Please enter a username and password.']

@@ -55,11 +55,32 @@ Verify Element Is Visible
 
 
 
+Verify Element Is Not Empty
+    [Arguments]    ${locator}
+    TRY
+        Should Not Be Empty    ${locator}    ${StandardWait}
+    EXCEPT    AS    ${error}
+        Capture And Name Screenshot
+        Fail    The issue is: Element '${locator}' is empty after ${StandardWait}: ${error}
+    END
+
+
+
+Verify Text Format
+    [Arguments]    ${text}    ${format}    ${formatName}=value
+    TRY
+        Should Match Regexp    ${text}    ${format}
+    EXCEPT    AS    ${error}
+        Fail    The issue is: Expected format value should be ${formatName} but got '${text}': ${error}
+    END 
+
+
 
 Navigate To Page
     [Arguments]    ${navigationLocator}    ${destinationPageLocator}
-    Safe Click    ${navigationLocator}
+    
     TRY
+        Safe Click    ${navigationLocator}
         Wait Until Page Contains Element    ${destinationPageLocator}    ${StandardWait}
     EXCEPT    AS    ${error}
         Capture And Name Screenshot

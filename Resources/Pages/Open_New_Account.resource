@@ -6,24 +6,38 @@ Resource    ../Common/CommonKeyword.resource
 
 *** Variables ***
 #locators
-${Open_New_Account_Header}    xpath=//h1[text()='Open New Account']
-${Open_New_Account_Button}    xpath=//input[@value='Open New Account']
-${Account_Type_Dropdown}    id=type
-${FROM_ACCOUNT_DROPDOWN}    id=fromAccountId
-
+${Open_New_Account_Header}    
+...    xpath=//h1[text()='Open New Account']
+${Open_New_Account_Button}    
+...    xpath=//input[@value='Open New Account']
+${Account_Type_Dropdown}    
+...    id=type
+${FROM_ACCOUNT_DROPDOWN}    
+...    id=fromAccountId
+${New_Account_Creation_Header}    
+...    xpath=//div[@id='openAccountResult']//h1[text()='Account Opened!']
+${OPEN_ACCOUNT_SUCCESS_MESSAGE}    
+...    xpath=//div[@id='openAccountResult']/p[text()='Congratulations, your account is now open.']
+${NEW_ACCOUNT_LABEL}    
+...    xpath=//div[@id='openAccountResult']//b[text()='Your new account number:']
+${NEW_ACCOUNT_ID}    
+...    id=newAccountId
 
 
 
 
 *** Keywords ***
 
-Open Checking Account
-    [Arguments]    ${fromAccountId}
+Open New Account
+    [Arguments]    
+    ...    ${accountType}    
+    ...    ${fromAccountId}    
 
     Select From List By Value    
-    ...    ${Account_Type_Dropdown}    CHECKING
+    ...    ${Account_Type_Dropdown}    
+    ...    ${accountType}
 
-    Select From List By Value    
+    Select From List By Index    
     ...    ${FROM_ACCOUNT_DROPDOWN}    
     ...    ${fromAccountId}
 
@@ -32,14 +46,41 @@ Open Checking Account
 
 
 
-Open Savings Account
-    [Arguments]    ${fromAccountId}
-    Select From List By Value    
-    ...    ${Account_Type_Dropdown}    CHECKING
 
-    Select From List By Value    
-    ...    ${FROM_ACCOUNT_DROPDOWN}    
-    ...    ${fromAccountId}
+Verify The New Account Created Successfully
+    [Arguments]    
+    ...    ${Open_Account_Expected_Success_Message}
 
-    Safe Click    
-    ...    ${Open_New_Account_Button}
+    Verify Element Is Visible    
+    ...    ${New_Account_Creation_Header}
+
+    Compare Element Text    
+    ...    ${OPEN_ACCOUNT_SUCCESS_MESSAGE}    
+    ...    ${Open_Account_Expected_Success_Message} 
+
+
+
+Verify The New Account Number Is Shown
+    
+    Verify Element Is Visible    
+    ...    ${NEW_ACCOUNT_LABEL}
+
+    ${accountId}=    Get Element Text    
+    ...    ${NEW_ACCOUNT_ID}
+
+    Verify Element Is Not Empty   
+    ...    ${accountId}
+
+    Should Match Regexp    
+    ...    ${accountId}    ^[0-9]+$
+
+    RETURN    ${accountId}  
+
+
+
+    
+       
+
+
+
+
