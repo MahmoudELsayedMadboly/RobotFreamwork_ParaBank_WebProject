@@ -26,7 +26,7 @@ ${NEW_ACCOUNT_ID}
 
 
 
-*** Keywords ***
+*** Keywords *** 
 
 Open New Account
     [Arguments]    
@@ -37,9 +37,11 @@ Open New Account
     ...    ${Account_Type_Dropdown}    
     ...    ${accountType}
 
+    
     Select From List By Index    
     ...    ${FROM_ACCOUNT_DROPDOWN}    
     ...    ${fromAccountId}
+
 
     Safe Click    
     ...    ${Open_New_Account_Button}
@@ -50,7 +52,7 @@ Open New Account
 Verify The New Account Created Successfully
     [Arguments]    
     ...    ${Open_Account_Expected_Success_Message}
-
+    
     Verify Element Is Visible    
     ...    ${New_Account_Creation_Header}
 

@@ -3,7 +3,7 @@ Library     SeleniumLibrary
 Resource    ../../Config/Global_Variables.robot
 Resource    ../../Resources/Pages/HomePage.resource
 Resource    ../../Resources/Pages/Login.resource
-Resource    ../TestData/Login_Data.robot
+Resource    ../../TestData/Login_Data.robot
 
 *** Keywords ***
 
