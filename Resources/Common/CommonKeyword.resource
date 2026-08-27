@@ -134,3 +134,39 @@ Generate Random Password
     ${digits}=     Generate Random String    2    [NUMBERS]
     ${password}=   Catenate    SEPARATOR=    ${upper}    ${lower}    ${digits}    @
     RETURN    ${password}
+
+
+
+
+Verify Dropdown Is Populated
+    [Arguments]    ${locator}
+    ${options}=    Get List Items    ${locator}
+    Should Not Be Empty    ${options}
+
+
+
+
+Safe Select From List
+    [Documentation]    Waits until a dropdown is populated with options, then selects using the given strategy
+    [Arguments]    ${locator}    ${selectionStrategy}    ${selectionValue}
+
+    TRY
+        Wait Until Keyword Succeeds    ${StandardWait}    ${PingTime}
+        ...    Verify Dropdown Is Populated    ${locator}
+
+        IF    '${selectionStrategy}' == 'index'
+            Select From List By Index    ${locator}    ${selectionValue}
+        ELSE IF    '${selectionStrategy}' == 'value'
+            Select From List By Value    ${locator}    ${selectionValue}
+        ELSE IF    '${selectionStrategy}' == 'label'
+            Select From List By Label    ${locator}    ${selectionValue}
+        ELSE
+            Fail    Unknown selection strategy '${selectionStrategy}'. Use 'index', 'value', or 'label'.
+        END
+
+    EXCEPT    AS    ${error}
+        Capture And Name Screenshot
+        Fail    The issue is: Unable to select from dropdown '${locator}' using strategy '${selectionStrategy}': ${error}
+    END
+
+

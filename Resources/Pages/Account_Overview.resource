@@ -8,8 +8,7 @@ Resource    ../Common/CommonKeyword.resource
 #locators
 ${ACCOUNTS_OVERVIEW_HEADER}    
 ...    xpath=//h1[normalize-space()='Accounts Overview']
-${Account_Column_In_Accounts_Table}    
-...    //table[@id='accountTable']/tbody/tr/td[1]/a[text()='${NewAccountId}']    
+   
 
 *** Keywords ***
 
@@ -19,9 +18,9 @@ Verify Accounts Overview Page Is Displayed
 
 
 Verify New Opened Account Appears In Accounts Table
-    [Arguments]    
+    [Arguments]       
     ...    ${NewAccountId}
     
-    Page Should Contain Element
+    Verify Element Is Visible    
     ...    xpath=//table[@id='accountTable']/tbody/tr/td[1]/a[text()='${NewAccountId}']
 
