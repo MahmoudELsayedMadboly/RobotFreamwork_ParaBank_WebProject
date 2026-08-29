@@ -66,7 +66,7 @@ Click into the account (via account ID link) to view Account Activity/details
 Verify the balance shown on the details page matches the balance shown on Accounts Overview
 
 
-4- Open New Account (in progress)
+4- Open New Account (Done)
 -------------------
 TC_OPEN_001: Verify User Can Open a New Checking Account
 
@@ -83,23 +83,27 @@ TC_OPEN_001: Verify User Can Open a New Checking Account
 TC_OPEN_002: Verify User Can Open a New Savings Account
 Same steps as TC_OPEN_001, with account type = SAVINGS.
 
-5. Transfer Funds
 
-TC_TRANSFER_001: Verify Successful Transfer Between Own Accounts
 
-Log in with valid credentials
-Note the balance of Account A (from account) and Account B (to account)
-Navigate to "Transfer Funds" page
-Enter a valid transfer amount
-Select Account A as "From Account"
-Select Account B as "To Account"
-Click "Transfer" button
-Verify confirmation message is displayed (e.g., "Transfer Complete!")
-Navigate to Accounts Overview
-Verify Account A's balance decreased by the transferred amount
-Verify Account B's balance increased by the transferred amount
+5. Transfer Funds (in progress)
+-------------------------------
+TC_TRANSFER_001: Verify Successful full Transfer Between Own Accounts
 
-TC_TRANSFER_002: Verify Transfer Fails When Amount Exceeds Available Balance (if ParaBank validates this — needs confirming on the live site)
+1-Log in with valid credentials
+2-Note the balance of Account A (from account) and Account B (to account)
+3-Navigate to "Transfer Funds" page
+4-Enter a valid transfer amount
+5-Select Account A as "From Account"
+6-Select Account B as "To Account"
+7-Click "Transfer" button
+8-Verify confirmation message is displayed (e.g., "Transfer Complete!")
+9-Navigate to Accounts Overview
+10-Verify Account A's balance decreased by the transferred amount
+11-Verify Account B's balance increased by the transferred amount
+
+TC_TRANSFER_002: Verify Successful partial Transfer Between Own Accounts
+
+TC_TRANSFER_003: Verify Transfer Fails When Amount Exceeds Available Balance (if ParaBank validates this — needs confirming on the live site)
 
 Log in with valid credentials
 Navigate to "Transfer Funds" page

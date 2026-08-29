@@ -1,6 +1,7 @@
 *** Settings ***
 Library     SeleniumLibrary
 library     String
+Library    Collections
 Resource    ../../Config/Global_Variables.robot
 Resource    BrowserKeyword.resource
 
@@ -106,6 +107,47 @@ Get Element Text
 
 
 
+
+Get List Item Options
+    [Documentation]    Waits until a dropdown is populated, then returns all its option values as a list
+    [Arguments]    ${locator}
+    TRY
+        Wait Until Keyword Succeeds    ${StandardWait}    ${PingTime}
+        ...    Verify Dropdown Is Populated    ${locator}
+        ${options}=    Get List Items    ${locator}
+    EXCEPT    AS    ${error}
+        Capture And Name Screenshot
+        Fail    The issue is: Unable to get list items from '${locator}': ${error}
+    END
+    RETURN    ${options}
+
+
+
+
+Get Table Rows Data
+    [Documentation]    Returns all rows of a table as a list of rows, each row a list of cell texts
+    [Arguments]    ${tableLocator}
+
+    ${rows}=    Get WebElements    ${tableLocator}//tr
+    ${tableData}=    Create List
+
+    FOR    ${row}    IN    @{rows}
+        ${cells}=    Get WebElements    ${row}//td
+        ${rowData}=    Create List
+
+        FOR    ${cell}    IN    @{cells}
+            ${cellText}=    Get Text    ${cell}
+            Append To List    ${rowData}    ${cellText}
+        END
+
+        Append To List    ${tableData}    ${rowData}
+    END
+
+    RETURN    ${tableData}
+
+
+
+
 Compare Element Text
     [Arguments]    ${locator}    ${expectedText}
     ${actualText}=    Get Element Text    ${locator}
@@ -168,5 +210,21 @@ Safe Select From List
         Capture And Name Screenshot
         Fail    The issue is: Unable to select from dropdown '${locator}' using strategy '${selectionStrategy}': ${error}
     END
+
+
+
+
+
+
+Convert Currency Text To Number
+    [Documentation]    Converts a currency-formatted string like '$515.50' into a numeric value
+    [Arguments]    ${currencyText}
+    TRY
+        ${cleaned}=    Remove String    ${currencyText}    $    ,
+        ${number}=    Convert To Number    ${cleaned}
+    EXCEPT    AS    ${error}
+        Fail    The issue is: Unable to convert '${currencyText}' to a number: ${error}
+    END
+    RETURN    ${number}
 
 
