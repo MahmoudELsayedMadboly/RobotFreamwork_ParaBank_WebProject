@@ -6,6 +6,12 @@ Resource    ../TestData/Login_Data.robot
 resource    ../Resources/Pages/HomePage.resource
 resource    ../Resources/Pages/Login.resource
 Resource    ../TestData/Open_Account_Data.robot
+resource    ../Resources/Common/SetupFlows/CreateUserFlow.resource
+
+
+
+suite Setup     Register Fresh User And Store Credentials
+suite Teardown    Close Application Browser
 
 Test Setup       Initialize Browser And Login
 Test Teardown    Close Application Browser

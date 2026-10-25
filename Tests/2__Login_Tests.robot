@@ -5,9 +5,14 @@ Resource    ../TestData/Registration_Data.robot
 Resource    ../TestData/Login_Data.robot
 resource    ../Resources/Pages/HomePage.resource
 resource    ../Resources/Pages/Login.resource
+resource    ../Resources/Common/SetupFlows/CreateUserFlow.resource
+
+suite Setup     Register Fresh User And Store Credentials  
+suite Teardown    Close Application Browser
 
 Test Setup       Initialize Browser
 Test Teardown    Close Application Browser
+
 
 
 *** Test Cases ***
@@ -17,8 +22,9 @@ TC_001_Login With Valid Credential
     [Tags]    Regression    
 
     login With User Credentials    
-    ...    ${validUsername}    
-    ...    ${validPassword}
+    ...    ${REGISTERED_USERNAME}    
+    ...    ${REGISTERED_PASSWORD}
+
 
     Verify Login Success    
     ...    ${ExpectedSuccessHeaderText}

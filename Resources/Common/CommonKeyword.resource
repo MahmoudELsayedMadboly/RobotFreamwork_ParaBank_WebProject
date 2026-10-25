@@ -216,7 +216,7 @@ Safe Select From List
 
 
 
-Convert Currency Text To Number
+Convert Text To Number
     [Documentation]    Converts a currency-formatted string like '$515.50' into a numeric value
     [Arguments]    ${currencyText}
     TRY

@@ -20,6 +20,15 @@ Note Sender Account
 
 
 Note Reciever Account
+    [Documentation]    Opens a fresh receiver account once per suite, stores its ID for reuse across all transfer test cases
+    Initialize Browser And Login
+    ${receiverId}=    Note Reciever Account
+    Set Suite Variable    ${TRANSFER_RECEIVER_ID}    ${receiverId}
+    Close Application Browser
+
+
+
+
 
 
 Transfer Fund

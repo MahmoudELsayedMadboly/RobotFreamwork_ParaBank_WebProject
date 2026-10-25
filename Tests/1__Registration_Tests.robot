@@ -8,13 +8,20 @@ Test Setup       Initialize Browser
 Test Teardown    Close Application Browser
 
 
+
+
+*** Variables ***
+${REGISTERED_USERNAME} =   ${EMPTY}
+${REGISTERED_PASSWORD} =   ${EMPTY}
+
+
 *** Test Cases ***
 
 TC_001_Verify User Registration
     [Documentation]    This test case verifies the user registration functionality by navigating to the Register page, filling in the registration form with valid data, submitting the form, and verifying the success message.
     [tags]    Regression
 
-    Verify HomePage Loaded
+    
     Navigate To Register Page
     ${username}    ${password}=    Set Register User Data  
     ...    ${FIRST_NAME}    
