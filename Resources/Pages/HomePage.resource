@@ -10,6 +10,8 @@ Resource    Account_Overview.resource
 ${REGISTER_LINK}    xpath=//a[text()='Register']
 ${OPEN_NEW_ACCOUNT_LINK}    xpath=//a[text()='Open New Account']
 ${ACCOUNTS_OVERVIEW_LINK}    xpath=//a[text()='Accounts Overview']
+${UPDATE_CONTACT_INFO_LINK}    xpath=//a[text()='Update Contact Info']
+${UPDATE_PROFILE_PAGE_HEADER}    xpath=//h1[@class='title' and normalize-space(text())='Update Profile']
 
 
 
@@ -35,3 +37,8 @@ Navigate To Account Overview Page
 Navigate To Open New Account Page
     [Documentation]    Navigates to the Open New Account page by clicking on the Register link
     navigate To Page    ${OPEN_NEW_ACCOUNT_LINK}    ${Open_New_Account_Header}
+
+
+Navigate To Update Contact Info Page
+    [Documentation]    Navigates to the Update Contact Info page by clicking on the Update Contact Info link
+    navigate To Page    ${UPDATE_CONTACT_INFO_LINK}    ${UPDATE_PROFILE_PAGE_HEADER}

@@ -25,7 +25,12 @@ Initialize Browser
 
 
 Initialize Browser And Login
-        [Arguments]    ${url}=${URL}    ${browser}=${BROWSER}
+        [Arguments]        
+        ...    ${Username}    
+        ...    ${Password}    
+        ...    ${url}=${URL}    
+        ...    ${browser}=${BROWSER}
+
     TRY
     
         Initialize Browser    
@@ -33,8 +38,8 @@ Initialize Browser And Login
         ...    ${browser}
 
         login With User Credentials     
-        ...    ${validUsername}    
-        ...    ${validPassword}
+        ...    ${Username}    
+        ...    ${Password}
 
         Verify Login Success    
         ...    ${ExpectedSuccessHeaderText}       
