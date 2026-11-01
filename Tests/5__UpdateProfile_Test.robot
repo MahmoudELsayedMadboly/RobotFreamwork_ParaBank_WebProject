@@ -24,16 +24,23 @@ TC_PROFILE_UPDATE_001: Verify User Can Update Profile Details Successfully
 
     Navigate To Update Contact Info Page
 
+
     Update First Name Field    ${New_FirstName}
+
+    #sleep    5s
 
     hit Update Profile Button
 
-    Sleep    20s
+    verify Profile Update Success  
 
-    verify Profile Update Success    
+    Navigate To Update Contact Info Page
 
+    #without this wait scenario will fail because the page is not fully loaded yet and the first name field is not populated yet
 
-
+    #this keyword need to be refactored
+    Verify The New First Name Is Displayed    ${New_FirstName}
+    
+   
    
 TC_PROFILE_UPDATE_002: Verify Update Fails With Invalid Data
     [Documentation]    This test case verifies that user can not update their profile details on the Update Contact Info page when insert invalid data.
@@ -46,6 +53,6 @@ TC_PROFILE_UPDATE_002: Verify Update Fails With Invalid Data
 
     hit Update Profile Button
 
-    Sleep    20s
+    Sleep    5s
 
     Verify Validation Message Is Displayed

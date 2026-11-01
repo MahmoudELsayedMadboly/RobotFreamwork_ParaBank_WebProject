@@ -1,5 +1,5 @@
 *** Variables ***
-${New_FirstName}    Mahmoud
+${New_FirstName}    the new name
 ${ExpectedSuccessMessageText}    Your account was created successfully. You are now logged in.
 ${ExpectedErrorMessageText}    This username already exists.
 ${PROFILE_UPDATED_Success Message}    Profile Updated

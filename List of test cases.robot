@@ -112,20 +112,22 @@ Select From/To accounts
 Click "Transfer"
 Verify an appropriate error/validation message is displayed
 Verify no balance change occurred on either account
+
+
 6. Bill Pay
+------------
 
 TC_BILLPAY_001: Verify Successful Bill Payment
 
-Log in with valid credentials
-Navigate to "Bill Pay" page
-Enter payee details: name, address, city, state, zip, phone, account number (confirm account number)
-Enter payment amount
-Select "From Account"
-Click "Send Payment"
-Verify confirmation message is displayed (e.g., "Bill Payment Complete")
-Verify payment amount and payee name shown in confirmation
-Navigate to Account Activity for the "From Account"
-Verify the bill payment transaction appears in the transaction history
+1- Log in with valid credentials
+2- Navigate to "Bill Pay" page
+3- Enter payee details: name, address, city, state, zip, phone, account number (confirm account number)4- nter payment amount
+4- Select "From Account"
+5- Click "Send Payment"
+6- Verify confirmation message is displayed (e.g., "Bill Payment Complete")
+7- Verify payment amount and payee name shown in confirmation
+8-Navigate to Account Activity for the "From Account"
+9- Verify the bill payment transaction appears in the transaction history
 
 TC_BILLPAY_002: Verify Bill Pay Fails With Missing Required Fields
 
@@ -135,6 +137,8 @@ Leave one or more required fields empty (e.g., payee name)
 Click "Send Payment"
 Verify validation error message is displayed for the missing field(s)
 Verify no payment was processed
+
+
 7. Find Transactions
 
 TC_FINDTXN_001: Verify Search By Transaction ID Returns Correct Result
@@ -161,8 +165,10 @@ Navigate to "Find Transactions" page
 Enter a known transaction amount
 Click search
 Verify the returned transaction(s) match the specified amount
-8. Update Contact Info
 
+
+8. Update Contact Info
+----------------------
 TC_UPDATE_001: Verify User Can Update Profile Details Successfully
 
 Log in with valid credentials

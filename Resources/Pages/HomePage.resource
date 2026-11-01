@@ -28,7 +28,6 @@ Navigate To Register Page
     navigate To Page    ${REGISTER_LINK}    ${REGISTER_PAGE_HEADER}
 
 
-
 Navigate To Account Overview Page
     [Documentation]    Navigates to the Account Overview page by clicking on the Register link
     navigate To Page    ${ACCOUNTS_OVERVIEW_LINK}    ${ACCOUNTS_OVERVIEW_HEADER}
