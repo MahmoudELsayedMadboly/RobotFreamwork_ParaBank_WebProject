@@ -26,6 +26,38 @@ Safe Click
     END
 
 
+Safe Clear Field By Passing Null Value
+    [Arguments]    
+    ...    ${locator}   
+    
+    TRY
+       Set Field Value    ${locator}    ${EMPTY}
+        
+    EXCEPT    AS    ${error}
+        Capture And Name Screenshot
+        Fail    The issue is: Unable to clear field '${locator}' by passing null value: ${error}
+    END
+
+
+
+
+Set Field Value
+    [Documentation]    Waits for the field, clears it, types the value, and checks that the value stayed.
+    [Arguments]    ${locator}    ${value}
+
+    Wait Until Element Is Visible    ${locator}    ${StandardWait}
+
+    Wait Until Element Is Enabled    ${locator}    ${StandardWait}
+
+    Clear Element Text    ${locator}
+
+    IF    '${value}' != ''
+
+        Input Text    ${locator}    ${value}
+
+    END
+
+    Textfield Value Should Be    ${locator}    ${value}
 
 
 

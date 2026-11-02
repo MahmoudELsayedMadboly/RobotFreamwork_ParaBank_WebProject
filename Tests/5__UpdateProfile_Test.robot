@@ -29,7 +29,7 @@ TC_PROFILE_UPDATE_001: Verify User Can Update Profile Details Successfully
 
     #sleep    5s
 
-    hit Update Profile Button
+    Submit Profile Update
 
     verify Profile Update Success  
 
@@ -51,8 +51,7 @@ TC_PROFILE_UPDATE_002: Verify Update Fails With Invalid Data
     #here consider null value is the invalid data & the parabank accept any passed values except for null value
     Clear First Name Field 
 
-    hit Update Profile Button
+    Submit Profile Update
 
-    Sleep    5s
-
-    Verify Validation Message Is Displayed
+    Verify Validation Message Is Displayed    
+    ...    ${FIRST_NAME_REQUIRED_MESSAGE}

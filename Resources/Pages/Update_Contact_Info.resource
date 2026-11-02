@@ -1,6 +1,7 @@
 *** Settings ***
 library     SeleniumLibrary
 Resource    ../Common/CommonKeyword.resource
+resource    ../TestData/Update_Profile_Info_Data.robot
 
 
 
@@ -11,7 +12,7 @@ ${First_Name_FIELD}          id=customer.firstName
 ${FIRST_NAME_ERROR_MESSAGE}    id=firstName-error
 ${UPDATE_PROFILE_BUTTON}    xpath=//input[@value='Update Profile']
 ${PROFILE_UPDATED_HEADER}    xpath=//h1[@class='title' and normalize-space(text())='Profile Updated']    
-
+#${ERR_FIRST_NAME}    id=firstName-error
 
 
 *** Keywords ***
@@ -30,7 +31,12 @@ Update First Name Field
 
 Clear First Name Field
     [Documentation]    Clears the First Name field on the Update Contact Info page
-    Clear Element Text    ${First_Name_FIELD}
+    #Clear Element Text    ${First_Name_FIELD}
+
+    Safe Clear Field By Passing Null Value    
+    ...    ${First_Name_FIELD}    
+
+
     
 
 
@@ -56,11 +62,10 @@ Wait Until Field Is Populated
 
 
 
-Hit Update Profile Button
+Submit Profile Update
     [Documentation]    Clicks the Update Profile button on the Update Contact Info page
     Safe Click    ${UPDATE_PROFILE_BUTTON}
-    #wait Until Page Contains Element    ${PROFILE_UPDATED_HEADER}    ${StandardWait}
-
+    
 
 
 Verify Profile Update Success
@@ -72,7 +77,23 @@ Verify Profile Update Success
 
 Verify Validation Message Is Displayed
     [Documentation]    Verifies that the validation error message for the updated field is displayed
+    [Arguments]    ${expectedErrorMessage}
+    
+    
     Verify Element Is Visible    ${FIRST_NAME_ERROR_MESSAGE}
+
+    ${actual}=    Get Text    ${FIRST_NAME_ERROR_MESSAGE}
+
+
+    Log To Console    the actual output is: ${actual}
+
+    log To Console    the expected output is: ${expectedErrorMessage}
+
+    Should Be Equal    ${actual}    ${expectedErrorMessage}
+
+
+
+
 
 
 

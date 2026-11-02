@@ -1,5 +1,4 @@
 *** Variables ***
-${New_FirstName}    the new name
-${ExpectedSuccessMessageText}    Your account was created successfully. You are now logged in.
-${ExpectedErrorMessageText}    This username already exists.
-${PROFILE_UPDATED_Success Message}    Profile Updated
+${New_FirstName}                     the new name
+${FIRST_NAME_REQUIRED_MESSAGE}       First name is required.
+${PROFILE_UPDATED_SUCCESS_MESSAGE}   Profile Updated
