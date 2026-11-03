@@ -47,3 +47,22 @@ Get Account With Sufficient Balance
     END
 
     Fail    No account found with balance greater than ${minimumBalance}
+
+
+
+
+
+Get Account Balance
+    [Arguments]    ${accountNumber}
+    [Documentation]    Run this while Accounts Overview is open. Returns the balance of the given account as a number.
+
+    ${balanceLocator}=    Set Variable
+    ...    xpath=//table[@id='accountTable']//a[normalize-space(text())='${accountNumber}']/ancestor::tr/td[2]
+
+    Verify Element Is Visible    ${balanceLocator}
+
+    ${balanceText}=    Get Element Text    ${balanceLocator}
+
+    ${balance}=    Convert Text To Number    ${balanceText}
+
+    RETURN    ${balance}

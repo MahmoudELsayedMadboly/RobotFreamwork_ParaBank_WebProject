@@ -188,18 +188,21 @@ Enter invalid data in a validated field (e.g., malformed phone number)
 Click "Update Profile"
 Verify an appropriate validation error is displayed
 Verify original data was not overwritten
-9. Request Loan
 
+
+
+9. Request Loan
+---------------
 TC_LOAN_001: Verify Loan Request Is Approved (Sufficient Funds)
 
-Log in with valid credentials
-Navigate to "Request Loan" page
-Enter a loan amount and a down payment amount that meets approval criteria
-Select an account to apply the loan to
-Click "Apply Now"
-Verify the response shows "Approved" status
-Navigate to Accounts Overview
-Verify a new loan account appears (if approved accounts are auto-created)
+1- Log in with valid credentials
+2- Navigate to "Request Loan" page
+3- Enter a loan amount and a down payment amount that meets approval criteria
+4- Select an account to apply the loan to
+5- Click "Apply Now"
+6- Verify the response shows "Approved" status
+7- Navigate to Accounts Overview
+8- Verify a new loan account appears (if approved accounts are auto-created)
 
 TC_LOAN_002: Verify Loan Request Is Denied (Insufficient Down Payment)
 
