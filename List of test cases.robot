@@ -211,15 +211,18 @@ Navigate to "Request Loan" page
 Enter a loan amount with an insufficient down payment
 Click "Apply Now"
 Verify the response shows "Denied" status
+
+
 10. Logout
+----------
 
 TC_LOGOUT_001: Verify Successful Logout
 
-Log in with valid credentials
-Verify Accounts Overview is displayed (confirms logged in)
-Click "Log Out" link
-Verify user is redirected to the homepage/login screen
-Verify the login form (username/password fields) is visible again
+1- Log in with valid credentials
+2- Verify Accounts Overview is displayed (confirms logged in)
+3- Click "Log Out" link
+4- Verify user is redirected to the homepage/login screen
+5- Verify the login form (username/password fields) is visible again
 
 TC_LOGOUT_002: Verify Session Ends After Logout
 

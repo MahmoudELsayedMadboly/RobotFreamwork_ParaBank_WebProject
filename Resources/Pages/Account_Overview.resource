@@ -8,7 +8,14 @@ Resource    ../Common/CommonKeyword.resource
 #locators
 ${ACCOUNTS_OVERVIEW_HEADER}    
 ...    xpath=//h1[normalize-space()='Accounts Overview']
-   
+${ACCOUNTS_TABLE}
+...    id=accountTable 
+${ERROR_PAGE_HEADER}           
+...    xpath=//div[@id='rightPanel']//h1[@class='title' and normalize-space(text())='Error!']
+${ERROR_PAGE_MESSAGE}          
+...    xpath=//div[@id='rightPanel']//p[@class='error']
+
+
 
 *** Keywords ***
 
@@ -66,3 +73,19 @@ Get Account Balance
     ${balance}=    Convert Text To Number    ${balanceText}
 
     RETURN    ${balance}
+
+
+
+Verify Accounts Data Is Not Displayed
+    Element Should Not Be Visible    ${ACCOUNTS_TABLE}
+
+
+Verify Internal Error Message Is Displayed
+    [Arguments]    ${expectedMessage}
+    [Documentation]    Waits for the error message and compares its text exactly
+
+    Verify Element Is Visible    ${ERROR_PAGE_MESSAGE}
+
+    ${actualMessage}=    Get Text    ${ERROR_PAGE_MESSAGE}
+
+    Should Be Equal    ${actualMessage}    ${expectedMessage}

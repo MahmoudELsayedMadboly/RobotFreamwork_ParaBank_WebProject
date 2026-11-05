@@ -15,6 +15,7 @@ ${UPDATE_PROFILE_PAGE_HEADER}    xpath=//h1[@class='title' and normalize-space(t
 ${REQUEST_LOAN_LINK}             xpath=//a[normalize-space(text())='Request Loan']
 ${REQUEST_LOAN_PAGE_HEADER}      xpath=//h1[@class='title' and normalize-space(text())='Apply for a Loan']
 ${ACCOUNTS_OVERVIEW_HEADER}      xpath=//h1[@class='title' and normalize-space(text())='Accounts Overview']
+${LOGOUT_LINK}                 xpath=//a[normalize-space(text())='Log Out']
 
 
 
@@ -49,3 +50,17 @@ Navigate To Update Contact Info Page
 
 Navigate To Request Loan Page
     Navigate To Page    ${REQUEST_LOAN_LINK}    ${REQUEST_LOAN_PAGE_HEADER}
+
+
+
+Log Out Of Application
+    Safe Click    ${LOGOUT_LINK}
+
+
+Verify Log Out Link Is Not Displayed
+    Element Should Not Be Visible    ${LOGOUT_LINK}
+
+
+
+Navigate Directly To Accounts Overview
+    Go To    ${ACCOUNTS_OVERVIEW_URL}
